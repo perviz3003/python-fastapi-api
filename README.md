@@ -1,19 +1,19 @@
-# python-fastapi-basic
+# python-fastapi-api
 
-This small piece of API contains all basic features that API's must have. App is created in [FastAPI](https://github.com/tiangolo/fastapi) Python framework. Database (PostgreSQL in our case) connection handled using [SQL Alchemy](https://github.com/sqlalchemy/sqlalchemy).
+This small piece of API contains all basic features that API's must have. App is created in [FastAPI](https://github.com/tiangolo/fastapi) Python framework. Database (PostgreSQL in our case) connection handled using [SQL Alchemy](https://github.com/sqlalchemy/sqlalchemy). [Pydantic](https://github.com/samuelcolvin/pydantic/) used for data parsing and validation.
 
 ## Installation
 
 1) Clone the repository to your development environment:
 
 ```bash
-git clone https://github.com/perviz3003/python-fastapi-basic.git
+git clone https://github.com/perviz3003/python-fastapi-api.git
 ```
 
 2) `cd` into that folder and create **virtual environment**:
 
 ```
-cd python-fastapi-basic
+cd python-fastapi-api
 python3 -m venv venv
 ```
 
