@@ -3,7 +3,7 @@ from sqlalchemy.orm import Session
 from ..schemas import user as user_schema
 from ..crud import users as users_crud
 from ..database import dbc
-from .. import helpers
+from .. import helpers, oauth2
 
 router = APIRouter(
     prefix='/users',
@@ -36,8 +36,14 @@ def create_user(
 )
 def get_user_info(
         user_id: int,
-        db: Session=Depends(dependency=dbc)
+        db: Session=Depends(dependency=dbc),
+        current_user: object=Depends(oauth2.get_current_user)
     ):
+    if current_user.id != user_id:
+        raise HTTPException(
+            status_code=status.HTTP_403_FORBIDDEN,
+            detail='Forbidden'
+        )
     db_user = users_crud.get_user(user_id=user_id, db=db)
     if db_user is None:
         raise HTTPException(
@@ -54,8 +60,14 @@ def get_user_info(
 def change_password(
         user_id: int,
         user: user_schema.UserUpdate,
-        db: Session=Depends(dependency=dbc)
+        db: Session=Depends(dependency=dbc),
+        current_user: object=Depends(oauth2.get_current_user)
     ):
+    if current_user.id != user_id:
+        raise HTTPException(
+            status_code=status.HTTP_403_FORBIDDEN,
+            detail='Forbidden'
+        )
     db_user = users_crud.get_user(user_id=user_id, db=db)
     if db_user is None:
         raise HTTPException(
@@ -72,8 +84,14 @@ def change_password(
 )
 def delete_user(
         user_id: int,
-        db: Session=Depends(dependency=dbc)
+        db: Session=Depends(dependency=dbc),
+        current_user: object=Depends(oauth2.get_current_user)
     ):
+    if current_user.id != user_id:
+        raise HTTPException(
+            status_code=status.HTTP_403_FORBIDDEN,
+            detail='Forbidden'
+        )
     db_user = users_crud.get_user(user_id=user_id, db=db)
     if db_user is None:
         raise HTTPException(
