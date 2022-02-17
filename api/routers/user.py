@@ -1,7 +1,7 @@
 from fastapi import APIRouter, status, Depends, HTTPException, Response
 from sqlalchemy.orm import Session
 from ..schemas import user as user_schema
-from ..crud import users as users_crud
+from ..crud import user as users_crud
 from ..database import dbc
 from .. import helpers, oauth2
 
